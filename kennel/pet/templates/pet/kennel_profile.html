@@ -1,0 +1,125 @@
+{% extends "pet/base.html" %}
+ 
+{% block content %}
+
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+      <!--  breadcrumb -->
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url 'pet:index' %}">Home</a>
+          <span class="divider">/</span>
+        </li>
+        <li class="active"><a href="{% url 'pet:manager_profile' user.pk %}"> Profile</a></li> 
+      </ul>
+
+      <!-- Compare -->
+      <div class="row">
+        <!-- Compare Products-->
+        <h1 class="heading1"><span class="maintext"> <i class="icon-refresh"></i> Kennel Profile</span></h1>
+        <div class="span12">
+
+          <div class="span8 pull-left">
+            {% if kennel.picture %}
+            <p><img src="{{ STATIC_URL }}{{ kennel.picture }}" alt="{{ kennel.name }}" height="200" width="200"></p>
+            {% endif %}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-user"></i> Username: </h4> 
+          </div>
+          <div class="span8 pull-left mb10">
+            {{ user.username|linebreaks }}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-leaf"></i> Name: </h4>
+          </div>
+          <div class="span8 pull-left mb10">
+            {{ kennel.name|linebreaks }}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-leaf"></i> Kennel Name: </h4>
+          </div>
+          <div class="span8 pull-left mb10">
+            {{ kennel.kennel_name|linebreaks }}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-bell"></i> Email: </h4>
+          </div>
+          <div class="span8 pull-left mb10">
+            {{ user.email|linebreaks }}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-magnet"></i> Contact Ph#: </h4>
+          </div>
+          <div class="span8 pull-left mb10">
+            {{ kennel.contact|linebreaks }}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-comment"></i> Additional Info: </h4>
+          </div>
+          <div class="span8 pull-left mb10">
+            {{ kennel.info|linebreaks }}
+          </div>
+
+        </div>
+
+          <div class="span6 pull-right">
+            <a href="{% url 'pet:manager_update_form' kennel.pk %}" class="btn btn-success">Update Profile</span></a>
+          </div>
+
+      </div>
+
+			<br>
+			<br>
+
+      <!-- Compare -->
+      <div class="row">
+        <!-- Compare Products-->
+        <h1 class="heading1"><span class="maintext"> <i class="icon-refresh"></i> My Pet Owners</span></h1>
+
+				{% if kennel.owners.all %}
+					<ul> 
+					{% for each in kennel.owners.all %}
+						<li><h3><a href="{% url 'pet:ro_owner_profile' each.pk each.salt %}">{{ forloop.counter }}. {{ each.name }}</a></h3>
+							{% if each.pets.all %}
+			        <div class="span12 pull-left">
+								<ol class="unstyled">
+									{% for pet in each.pets.all %}
+										<li>
+										<h4><i class="icon-play"></i><a href="{% url 'pet:ro_pet_profile' pet.pk pet.salt %}"> {{ pet.name }}</a></h4>
+										</li> 
+									{% endfor %}
+								</ol>
+							</div>
+							{% endif %}
+						</li>
+					{% endfor %}
+					</ul>
+				{% else %}
+					<h3>No current clients at this time</h3> 
+				{% endif %}
+			</div>
+      <br>
+      <hr>
+      <p>Do you want to change your password? <a class="emphasize" href="{% url 'pet:reset_password' %}">Click Here</a></p>
+      <br>
+      <p>Do you want to close your account? <a class="emphasize" href="{% url 'pet:user_delete_account' user.pk %}">Click Here</a></p>  
+
+			<br>
+			
+    </div>
+  </section>
+</div>
+
+{% endblock%}
+
+
+
+

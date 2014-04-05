@@ -1,0 +1,60 @@
+{% extends "pet/base_account.html" %}
+
+
+{% block content %}
+
+<h1 class="heading1"><span class="maintext"> <i class="icon-signin"></i>{{ form_title }}</span></h1>
+<div class="span9">
+  <h3 class="heading3">{{ form_sub_title }}</h3>
+  {% if form_sub_title %}<br>{% endif %}
+
+	<form class="form-horizontal" enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+    <fieldset>
+    	{% for field in form %}
+
+        <div class="control-group">
+          <label for="{{ field.id_for_label }}" id="{{ field.id_for_label }}" class="control-label">
+          	{% if field.field.required %}
+	          	<span class="red">*</span>
+          	{% endif %}
+          	{{ field.label }}:</label>
+          <div class="controls"> 
+          	{{ field }} 
+          </div>
+        </div>  
+
+    	{% endfor %}
+  		<div class="form-actions">
+  			<input class="btn btn-orange" type="submit" value="Submit" >
+  		</div>
+  	</fieldset>
+	</form> 
+</div>
+
+{% endblock content %}
+
+
+{% block sidebar %}
+
+    <!-- Sidebar Start-->
+    <div class="span3">
+      <aside>
+        <div class="sidewidt">
+          <h2 class="heading2"><span> <i class="icon-envelope"></i> Contact Info</span></h2>
+          <p> Lorem Ipsum is simply<br>
+            Lorem Ipsum is simply<br>
+           Lorem Ipsum is simply<br>
+            <br>
+           <i class="icon-phone"></i>  Phone: (012) 333-7890<br>
+           <i class="icon-phone"></i> Fax: (123) 444-7890<br>
+           <i class="icon-envelope"></i> Email: test@contactus.com<br>
+           <i class="icon-globe"></i> Web: yourcompanyname.com<br>
+          </p>
+        </div>
+      </aside>
+    </div>
+    <!-- Sidebar End-->
+
+{% endblock sidebar %}
+
+

@@ -1,0 +1,110 @@
+{% extends "pet/base.html" %}
+
+{% block content %}
+
+
+<div id="maincontainer"> 
+    <!-- Slider Start-->
+    <section class="slider">
+        <div id="layerslider-container-fw">
+            <div id="layerslider3" style="width: 100%; height: 400px; margin: 0px auto; ">
+
+                <div class="ls-layer" style="slidedirection: right; transition2d: 24,25,27,28; "> <img src="{{ STATIC_URL }}{{ photo1.picture }}" class="ls-bg" alt="{{ photo1.name }}">
+                    <h5 class="ls-s-1 text" style=" top:317px; left: 105px; slidedirection : fade; slideoutdirection : fade; durationout : 750; easingin : easeOutQuint; delayin : 300; scalein : .8; scaleout : .8; showuntil : 4000;"> {{ photo1.slogan }}</h5>
+                </div>
+
+                <div class="ls-layer" style="slidedirection: right; transition2d: 110,111,112,113; "> <img src="{{ STATIC_URL }}{{ photo2.picture }}" class="ls-bg" alt="{{ photo2.name }}">
+                    <h5 class="ls-s-1 text2" style=" top:317px; left: 105px; slidedirection : fade; slideoutdirection : fade; durationout : 750; easingin : easeOutQuint; delayin : 300; scalein : .8; scaleout : .8; showuntil : 4000;"> {{ photo2.slogan }} </h5>
+                </div>
+                <div class="ls-layer" style="slidedirection: right; transition2d: 92,93,105; "> <img src="{{ STATIC_URL }}{{ photo3.picture }}" class="ls-bg" alt="{{ photo3.name }}">
+                    <h5 class="ls-s-1 text2" style=" top:47px; left: 105px; slidedirection : fade; slideoutdirection : fade; durationout : 750; easingin : easeOutQuint; delayin : 300; scalein : .8; scaleout : .8; showuntil : 4000;"> {{ photo3.slogan }}</h5>
+                </div>
+
+            </div> 
+        </div> 
+    </section>
+    <!-- Slider End-->
+
+    <div class="container">
+        <div class="row">
+            <aside class="span3 mt40"> 
+                <!-- Category-->
+                <div class="sidewidt">
+                    <h1 class="heading1"><span class="maintext"><i class="icon-th-list"></i> Navigate</span></h1>
+                    <ul class="nav nav-list categories">
+                      <li><a href="{% url 'pet:mission_statement' %}">About</a></li>
+                      <li><a href="{% url 'pet:where_to_start' %}">Where to Start</a></li>
+                      <li><a href="{% url 'pet:sitemap' %}">Site Map</a></li>
+                      <li><a href="{% url 'pet:contact' %}">Contact Us</a> </li>
+                    </ul>
+                </div>
+
+<!-- Newsletter -->
+  <div class="sidewidt">
+    <h1 class="heading1"><span class="maintext"><i class="icon-pencil"></i> Newsletters</span></h1>
+    <section id="newslettersignup">
+      <div class="pull-left">
+        <form class="form-horizontal" enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+            <div class="errorlist">
+              <ul> <li>{{ form.email.errors }}</li> </ul>
+            </div>
+            <div class="input-prepend">
+            <label for="id_email" id="id_email"></label>
+            <input type="text" placeholder="Subscribe to Newsletter" id="id_email" name="email" class="span2">
+            <input value="Subscribe" class="btn btn-orange" type="submit">
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</aside>
+
+<!-- Featured Product-->
+<div class="span9">
+  <section id="featured" class="row mt40">
+    <h1 class="heading1 mt0"><span class="maintext"><i class="icon-desktop"></i> Pet News and other Stories</span></h1>
+
+    <ul class="thumbnails">
+      {% if blogs %}
+        {% for blog in blogs %}
+        <li class="span3"> <a class="prdocutname mb10" href="#">{{ blog.title }}</a>
+          <div class="thumbnail"> <a href="#"><img alt="{{ blog.title }}" src="{{ STATIC_URL }}{{ blog.picture }}" height="222" width="300"></a>
+            <div class="price">
+            	<ul><li>{{ blog.story_description }}</li></ul>
+            </div>
+            <a class="btn btn-orange btn-small  addtocartbutton" href="{{ blog.link }}">Go to Story</a>
+          </div>
+        </li>
+        {% endfor %}
+      {% endif %}
+
+          </ul>
+
+    </section>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<!-- /maincontainer --> 
+
+{% endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

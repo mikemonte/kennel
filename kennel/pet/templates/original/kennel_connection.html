@@ -1,0 +1,12 @@
+{% extends "pet/base.html" %}
+
+
+{% block content %}
+
+<h3>Remove "{{ manager.kennel_name }}" from my connections.  They will no longer be able to view my pets.</h3>
+<form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Remove">
+</form>
+
+{% endblock %}

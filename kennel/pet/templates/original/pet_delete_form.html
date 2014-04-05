@@ -1,0 +1,14 @@
+{% extends "pet/base.html" %}
+
+
+{% block content %}
+
+<h3>Are you sure?</h3>
+<h4>Are you sure that you want to remove the pet "{{ pet.name }}"?</h4>
+<p>Pet profile: <a href="{% url 'pet:pet_detail' pet.pk pet.slug %}">{{ pet.name }}</a></p>
+<form action="" method="post">{% csrf_token %}
+	<input type="hidden" name="post" value="yes">
+	<input type="submit" value="Yes, I'm sure">
+</form>
+
+{% endblock %}

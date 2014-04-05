@@ -1,0 +1,32 @@
+{% extends "pet/base.html" %}
+
+{% block content %}
+
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+      <!--  breadcrumb -->
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url 'pet:index' %}">Home</a>
+          <span class="divider">/</span>
+        </li>
+        <li class="active"><a href="#">Account Deleted</a></li> 
+      </ul>
+      <!-- Compare -->
+      <div class="row span11">
+        <!-- Compare Products-->
+
+				<h3>We're sorry to see you go.</h3>
+				<p>A confirmation will be sent to your email that your account has been cancelled.  We hope to see you again sometime.</p>
+				<p>Thank you.</p>
+
+			</div>
+
+	    <br>
+    
+    </div>
+  </section>
+</div>
+
+{% endblock %}

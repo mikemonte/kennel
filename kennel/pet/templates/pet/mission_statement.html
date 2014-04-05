@@ -1,0 +1,67 @@
+{% extends "pet/base.html" %}
+{% load url from future %}
+
+
+{% block content %}
+
+
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+
+    	<h1 class="heading1"><span class="maintext"> <i class="icon-refresh"></i> Mission Statement</span></h1>
+    	<div class="span10">
+
+				<h4>Simply..</h4>
+				<p>To help make your pets' information more readily available to the people that watch your pets, so that they have it when they need it.</p>
+
+				<br>
+
+				<h4>How do we do this?</h4>
+				<p>By providing this online resource to allow you to add and update your pets' information at any time, and to decide who is allowed to view your pets' information.  Add information specific to taking care of your pet, feeding instructions, emergency contact information, and more.</p>
+
+				<br>
+
+				<h4>Help make us better and improve our Mission</h4>
+				<p>We're always looking for ways to be better and improve our service.  If you have any ideas of features that you would like to see added, please <a class="emphasize" href="{% url 'pet:contact' %}">contact</a> us and let us know.  As well, if the site has any bugs or issues that you notice please notify us.</p>
+				
+				<br>
+
+				<p>Thank you, and we hope that you enjoy our site.</p>
+
+				<br>
+
+      <div class="span9">
+        <div class="form-actions">
+          <div class="pull-right">
+	        	<input type="button" value="Back" onclick="goBack()" class="btn btn-success">
+	        </div>
+	      </div>
+	    </div>
+
+			</div>
+    </div>
+  </section>
+</div>
+
+{% endblock%}
+
+
+{% block js %}
+
+	{{ block.super }}
+
+	<script>
+		function goBack()
+		  {
+		  window.history.back()
+		  }
+	</script>
+
+{% endblock js %}
+
+
+
+
+
+

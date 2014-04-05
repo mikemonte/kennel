@@ -1,0 +1,37 @@
+{% extends "pet/base.html" %}
+
+
+{% block content %}
+ 
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+      <!--  breadcrumb -->
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url 'pet:index' %}">Home</a>
+          <span class="divider">/</span>
+        </li>
+        <li class="active"><a href="#">Account Delete</a></li> 
+      </ul>
+      <!-- Compare -->
+      <div class="row span11">
+        <!-- Compare Products-->
+
+				<h3>Are you sure?</h3>
+				<h4>Are you sure that you want to delete your account?</h4>
+				<form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+					{{ form.as_p }}
+					<br>
+					<input class="btn btn-danger" type="submit" value="Yes, I'm sure">
+				</form>
+
+			</div>
+
+	    <br>
+    
+    </div>
+  </section>
+</div>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "pet/base_account.html" %}
+
+
+{% block breadcrumbs %}
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url 'pet:index' %}">Home</a>
+          <span class="divider">/</span>
+        </li>
+        <li class="active">Register Account</li>
+      </ul>
+{% endblock breadcrumbs %}
+
+
+ 
+{% block content %}
+
+	{% if user.is_authenticated %}
+
+	<h1 class="heading1"><span class="maintext"> <i class="icon-signin"></i> {{ form_title }}</span></h1>
+	<h3>You're currently signed in</h3>
+	<h5>You can't create an account while signed in. Please log out before creating an account.</h5>
+	<br>
+	<a class="btn btn-orange" href="{% url 'pet:logout' %}">Logout</a>
+
+	{% else %}
+
+	  <h1 class="heading1"><span class="maintext"> <i class="icon-signin"></i> {{ form_title }}</span></h1>
+
+	  <form class="form-horizontal" enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+	    <h3 class="heading3">Your Personal Details</h3>
+	    <div class="registerbox">
+	      <fieldset>
+
+		    	{% for field in form %} 
+
+            <div class="errorlist">
+              <ul> <li>{{ field.errors }}</li> </ul>
+            </div>
+
+		        <div class="control-group">
+		          <label for="{{ field.id_for_label }}" id="{{ field.id_for_label }}" class="control-label">
+		          	{% if field.field.required %}
+			          	<span class="red">*</span>
+		          	{% endif %}
+		          	{{ field.label }}:</label> 
+		          <div class="controls">
+		          	{{ field }}
+		          </div>
+		        </div> 
+
+		    	{% endfor %}
+
+					</fieldset>
+				</div>
+
+			<div class="form-actions">
+	      <div class="pull-right">
+	        I have read and agree to the <a class="emphasize" href="{% url 'pet:privacy_policy' %}" >Privacy Policy</a> and <a class="emphasize" href="{% url 'pet:terms_and_conditions' %}">Terms and Conditions</a>
+	        &nbsp;
+	        <input type="Submit" class="btn btn-orange" value="Continue">
+	      </div>
+	    </div>
+	  </form>
+	  <div class="clearfix"></div>
+	  <br>
+
+	{% endif %}
+
+  </div>   
+
+{% endblock content %}
+
+
+
+{% if user.is_authenticated %}
+
+	{% block sidebar %}{% endblock sidebar %}
+
+{% endif %}
+
+
+
+

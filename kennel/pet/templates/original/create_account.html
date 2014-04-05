@@ -1,0 +1,22 @@
+{% extends "pet/base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+	<h3>Please sign out in order to create an account.</h3>
+
+{% else %}
+
+	<h3>Create Account Form</h3>
+	<p>{{ username_taken }}</p>
+	<div>
+		<form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="Register">
+		</form>
+	</div>
+
+{% endif %}
+
+{% endblock %}

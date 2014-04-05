@@ -1,0 +1,109 @@
+{% extends "pet/base.html" %}
+
+{% block content %}
+
+
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+      <!--  breadcrumb --> 
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url 'pet:index' %}">Home</a>
+          <span class="divider">/</span>
+        </li>
+        <li class="active"><a href="{% url 'pet:login' %}">Login</a></li>
+      </ul>
+       <!-- Account Login-->
+      <div class="row">  
+        <div class="span9">
+          <h1 class="heading1"><span class="maintext"> <i class="icon-lock"></i> Login</span></h1>
+          <section class="newcustomer">
+            <h2 class="heading2">New Member </h2>
+            <div class="loginbox">
+              <h4 class="heading4"> Register Pet Owner Account</h4>
+              <p>By creating an account you will be able to add your pets and their important information such as what they eat, walking instructions and emergency contact information.</p>
+              <p><a href="{% url 'pet:create_account' %}" class="btn btn-orange">Continue</a></p>
+              <br>
+              <h4 class="heading4"> Register Pet Manager Account</h4>
+              <p>By creating an account you will be able to view pet owners' pets once they grant you access and have all important and relevant information for the pets that you are taking care of in one place.</p>
+              <a href="{% url 'pet:manager_create_account' %}" class="btn btn-orange">Continue</a>
+            </div>
+          </section>
+
+          <section class="returncustomer">
+            <h2 class="heading2">Returning Member </h2>
+            <div class="loginbox">
+              <h4 class="heading4">I am a returning member</h4>
+
+	          <form class="form-vertical" enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+	            <fieldset>
+	              <div class="control-group">
+	                <label for="id_username" class="control-label">Username:</label>
+	                <div class="controls">
+	                  <input type="text"  class="span3">
+	                </div>
+	              </div>
+	              <div class="control-group">
+	                <label for="id_password" class="control-label">Password:</label>
+	                <div class="controls">
+	                  <input type="text"  class="span3">
+	                </div>
+	              </div>
+	              <a class="" href="{% url 'pet:forgot_password' %}">Forgotten Password</a>
+	              <br>
+	              <br>
+	              <a href="#" class="btn btn-orange">Login</a>
+	            </fieldset>
+	          </form>
+
+            </div>
+          </section>
+        </div>
+        
+        <!-- Sidebar Start-->
+        <aside class="span3">
+          <div class="sidewidt">
+            <h1 class="heading1"><span class="maintext"> <i class="icon-user"></i> Account</span></h1>
+            <ul class="nav nav-list categories">
+              <li>
+				{% if user.is_authenticated %}
+					{% if perms.pet.is_a_owner %}
+						<a class="orange" href="{% url 'pet:owner_profile' user.pk %}">My Account</a>
+					{% endif %}
+					{% if perms.pet.is_a_kennel %}
+						<a class="orange" href="{% url 'pet:manager_profile' user.pk %}">My Account</a>
+					{% endif %}
+				{% else %}
+					<a href="{% url 'pet:login' %}"> My Account</a>
+				{% endif %}
+              </li>
+              <li>
+				{% if user.is_authenticated %}
+					{% if perms.pet.is_a_owner %}
+						<a class="orange" href="{% url 'pet:owner_profile' user.pk %}">Edit Account</a>
+					{% endif %}
+					{% if perms.pet.is_a_kennel %}
+						<a class="orange" href="{% url 'pet:manager_profile' user.pk %}">Edit Account</a>
+					{% endif %}
+				{% else %}
+					<a href="{% url 'pet:login' %}">Edit Account</a>
+				{% endif %}
+              </li>
+              <li>
+                <a href="{% url 'pet:forgot_password' %}">Password</a>
+              <li>
+                <a href="#">Newsletter</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+        <!-- Sidebar End-->
+        
+      </div>
+    </div>
+  </section>
+</div>
+
+
+{% endblock %}

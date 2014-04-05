@@ -1,0 +1,12 @@
+*.pyc
+*.swp
+*.pyo
+*.db
+.DS_Store
+.coverage
+local_settings.py
+/static
+/kennel/static
+/media
+/kennel/media
+/production

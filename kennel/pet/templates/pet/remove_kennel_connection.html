@@ -1,0 +1,39 @@
+{% extends "pet/base.html" %}
+
+
+{% block content %}
+
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+      <!--  breadcrumb -->
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url 'pet:index' %}">Home</a>
+          <span class="divider">/</span>
+        </li>
+        <li class="active"><a href="{% url 'pet:manager_profile' user.pk %}">Remove Kennel</a></li> 
+      </ul>
+
+
+      <!-- Compare -->
+      <div class="row">
+        <!-- Compare Products-->
+        <h1 class="heading1"><span class="maintext"> <i class="icon-refresh"></i> Remove Kennel Connection</span></h1>
+	      <div class="span11">
+					<h3>Remove "{{ manager.kennel_name }}" from my connections.  They will no longer be able to view my pets.</h3>
+					<form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+						{{ form.as_p }}
+						<br>
+						<input class="btn btn-danger" type="submit" value="Remove">
+					</form>
+				</div>
+			</div>
+
+			<br>
+			
+    </div>
+  </section>
+</div>
+
+{% endblock %} 

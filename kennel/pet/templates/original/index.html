@@ -1,0 +1,38 @@
+{% extends "pet/base.html" %}
+
+{% block content %}
+<div>
+	<h3>Or</h3>
+</div>
+
+{% if user.is_authenticated %}
+<div>
+	{% if perms.pet.is_a_owner %}
+	<p><a href="{% url 'pet:owner_profile' user.pk %}">Jump to profile page to manage my Pets</a></p>
+	{% endif %}
+	{% if perms.pet.is_a_kennel %}
+	<p><a href="{% url 'pet:manager_profile' user.pk %}">Jump to profile page to manage my Clients and Pets</a></p>
+	{% endif %}
+</div>
+{% else %}
+<div>
+	<form action="" method="post">{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Login">
+	</form>
+	<p>Forgot your password ? No worries, click <a href="{% url 'pet:forgot_password' %}">here</a> to reset your password. Once you recieve the email, either follow this <a href="{% url 'pet:reset_password' %}">Link </a> or follow the link in your email to reset your password.</p>
+	<p>Don't have an account yet ? <a href="{% url 'pet:create_account' %}">Create a Pet Owner account</a></p>
+	<p>Want to manage your own kennel, clients and their pets? <a href="{% url 'pet:manager_create_account' %}">Create a Manager account</a></p>
+</div>	
+{% endif %}
+
+<div>
+	<h3>Instructions</h3>
+	<ol>
+		<li>Search for your Pet Stayz home. <strong>Or</strong>, use the web address from the person that normally watches your pets.</li>
+		<li>Once you've located their page, set up your account to share important information about your pet with the person that watches them.</li>
+		<li>If you would like to set up your account first, and find the Puppy Stayz home page of the person that watches your pet at a later time, you can do that as well.</li>
+	</ol>
+</div>
+
+{% endblock%}

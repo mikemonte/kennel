@@ -1,0 +1,1 @@
+Aaron SQL teaching project. - SQL code snippets on learning the fundamentals of SQL and connecting it's use to MS Excel and how to start analyzing using them together.

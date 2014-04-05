@@ -1,0 +1,23 @@
+{% extends "pet/base.html" %}
+
+
+{% block content %}
+
+<h3>Pet Detail</h3>
+
+{% if object %}
+<p>Name: {{ object.name|linebreaks }}</p>
+<p>Age: {{ object.age|linebreaks }}</p>
+<p>Food: {{ object.food|linebreaks }}</p>
+<p>Care: {{ object.care|linebreaks }}</p>
+<p>Walk: {{ object.walk|linebreaks }}</p>
+<p>Emergency Contact: {{ object.emergency|linebreaks }}</p>
+
+
+<div>
+	<img src="{{ STATIC_URL }}{{ object.picture }}" alt="{{ object.name }}" height="100" width="100">
+</div>
+{% endif %}
+<p><a href="{% url 'pet:pet_update_form' pet.pk pet.slug %}">Update</a> &nbsp; <a href="{% url 'pet:pet_delete_form' pet.pk pet.slug %}">Remove</a></p>
+<p><a href="{% url 'pet:owner_profile' user.pk%}"> View all pets</a></p>
+{% endblock %}

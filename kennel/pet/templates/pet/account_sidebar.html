@@ -1,0 +1,49 @@
+{% extends "pet/base_account.html" %}
+
+{% block sidebar %}
+        
+        <!-- Sidebar Start-->
+        <aside class="span3">
+          <div class="sidewidt">
+            <h1 class="heading1"><span class="maintext"> <i class="icon-user"></i> Account</span></h1>
+            <ul class="nav nav-list categories">
+              <li>
+          			{% if user.is_authenticated %}
+          				{% if perms.pet.is_a_owner %}
+          					<a class="orange" href="{% url 'pet:redirect_to_account' user.pk %}">My Account</a>
+          				{% endif %}
+          				{% if perms.pet.is_a_kennel %}
+          					<a class="orange" href="{% url 'pet:redirect_to_account' user.pk %}">My Account</a>
+          				{% endif %}
+          			{% else %}
+          				<a href="{% url 'pet:login' %}"> My Account</a>
+          			{% endif %}
+                      </li>
+                      <li>
+          			{% if user.is_authenticated %}
+          				{% if perms.pet.is_a_owner %}
+          					<a class="orange" href="{% url 'pet:redirect_to_account' user.pk %}">Edit Account</a>
+          				{% endif %}
+          				{% if perms.pet.is_a_kennel %}
+          					<a class="orange" href="{% url 'pet:redirect_to_account' user.pk %}">Edit Account</a>
+          				{% endif %}
+          			{% else %}
+          				<a href="{% url 'pet:login' %}">Edit Account</a>
+          			{% endif %}
+              </li>
+              <li>
+                <a href="{% url 'pet:forgot_password' %}">Password</a>
+              <li>
+                <a href="#">Newsletter</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+        <!-- Sidebar End-->
+        
+      </div>
+    </div>
+  </section>
+</div>
+
+{% endblock %}

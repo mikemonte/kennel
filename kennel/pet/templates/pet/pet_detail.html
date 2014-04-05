@@ -1,0 +1,108 @@
+{% extends "pet/base.html" %}
+{% load url from future %}
+
+
+{% block content %}
+
+
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+      <!--  breadcrumb -->
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url 'pet:index' %}">Home</a>
+          <span class="divider">/</span>
+        </li>
+        <li class="active"><a href="#">Pet Profile</a></li> 
+      </ul>
+
+      <!-- Compare -->
+      <div class="row">
+        <div class="span10">
+        <!-- Compare Products-->
+          <h1 class="heading1"><span class="maintext"> <i class="icon-refresh"></i> Pet Profile</span></h1>
+
+          <div class="span8 pull-left">
+              {% if pet.picture %}
+              <p><img src="{{ STATIC_URL }}{{ pet.picture }}" alt="{{ pet.name }}" height="200" width="200"></p>
+              {% endif %}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-user"></i> Name: </h4>
+          </div>
+          <div class="span8 pull-left mb10">
+            {{ pet.name|linebreaks }}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-leaf"></i> Age: </h4>
+          </div>
+          <div class="span8 pull-left mb10">
+            {{ pet.age|linebreaks }}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-bell"></i> Feeding Instructions: </h4>
+          </div>
+          <div class="span8 pull-left mb10">
+            {{ pet.food|linebreaks }}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-magnet"></i> Walking Instructions: </h4>
+          </div>
+          <div class="span8 pull-left mb10">
+            {{ pet.walk|linebreaks }}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-comment"></i> Care Instructions: </h4>
+          </div>
+          <div class="span8 pull-left mb10">
+            {{ pet.care|linebreaks }}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-wrench"></i> Emergency Contact: </h4>
+          </div>
+          <div class="span8 pull-left mb10">
+            {{ pet.emergency|linebreaks }}
+          </div>
+
+          <div class="span4 pull-left profile_strong">
+            <h4 class="heading4"><i class="icon-list-alt"></i> Other: </h4>
+          </div>
+          <div class="span8 pull-left mb10">
+            <p>Microchip Id: {% if pet.microchip_id %} {{ pet.microchip_id }} {% else %} none {% endif %}</p>
+            <p>House Trained: {% if pet.house_trained %} Yes {% else %} No {% endif %}</p>
+            <p>Spayed or Neutered: {% if pet.spayed_or_neutered %} Yes {% else %} No {% endif %}</p>
+            <p>Barks: {% if pet.barks %} Yes {% else %} No {% endif %}</p>
+          </div>
+
+        </div>
+      </div>
+
+      <br>
+
+			{% if perms.pet.is_a_owner %}
+      <div class="span9">
+              <div class="form-actions">
+                <div class="pull-right">
+        	<a href="{% url 'pet:pet_update_form' pet.pk pet.slug %}" class="btn btn-success">Update</span></a>
+        	<a href="{% url 'pet:pet_delete_form' pet.pk pet.slug %}" class="btn btn-warning">Remove</span></a>
+        </div>
+      </div>
+    </div>
+      {% endif %}
+
+			<br>
+			
+    </div>
+  </section>
+</div>
+
+{% endblock%}
+
+

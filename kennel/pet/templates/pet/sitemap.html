@@ -1,0 +1,196 @@
+{% extends "pet/base.html" %}
+{% load url from future %}
+
+
+{% block content %}
+
+
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+
+    	<h1 class="heading1"><span class="maintext"> <i class="icon-refresh"></i> Sitemap</span></h1>
+    	<div class="span10">
+
+				<h4>General</h4>
+				<ul class="unstyled listoption5">
+						<li>
+							<a class="emphasize" href="{% url 'pet:index' %}">Home</a> - 
+							<a href="{% url 'pet:index' %}">Home Page contains links to all major parts of the site, Newlsetter signup, and Pet Stories.</a>
+						</li>
+						<li>
+							<a class="emphasize" href="{% url 'pet:mission_statement' %}">About</a> - 
+							<a href="{% url 'pet:mission_statement' %}">Our mission statement and who we are.</a>
+						</li>
+						<li>
+							<a class="emphasize" href="{% url 'pet:where_to_start' %}">Where to Start</a> - 
+							<a href="{% url 'pet:where_to_start' %}">How to use the site, different types of accounts, and other features.</a>
+						</li>
+						<li>
+							<a class="emphasize" href="{% url 'pet:sitemap' %}">Sitemap</a> - 
+							<a href="{% url 'pet:sitemap' %}">Map of site pages.</a>
+						</li>
+						<li>
+							<a class="emphasize" href="{% url 'pet:contact' %}">Contact Us</a> - 
+							<a href="{% url 'pet:contact' %}">Email contact form.  Contact us about anything that you would like to talk about.  Any new features that you would like to see, or any site issues that you noticed.</a>
+						</li>
+					</ul>
+
+				<br>
+
+				<h4>Pet Owner Pages</h4>
+				<ul class="unstyled listoption5">
+						<li>
+							<a class="emphasize" href="{% url 'pet:create_account' %}">Create Account</a> - 
+							<a href="{% url 'pet:create_account' %}">Create a Pet Owner account here.</a>
+						</li>
+
+						{% if user.is_authenticated %}
+		          {% if perms.pet.is_a_owner %} 
+								<li>
+									<a class="emphasize" href="{% url 'pet:redirect_to_account' user.pk %}">Pet Owner Profile</a> - 
+									<a href="{% url 'pet:redirect_to_account' user.pk %}">Your Pet Owner Profile page.</a>
+								</li>
+								<li>
+									<a class="emphasize" href="{% url 'pet:redirect_to_account' user.pk %}">Pet Owner Update Account</a> - 
+									<a href="{% url 'pet:redirect_to_account' user.pk %}">Create a Pet Owner account here.</a>
+								</li>
+								<li>
+									<a class="emphasize" href="{% url 'pet:user_delete_account' user.pk %}">Pet Owner Delete Account</a> - 
+									<a href="{% url 'pet:user_delete_account' user.pk %}">Create a Pet Owner account here.</a>
+						</li>
+							{% endif %}
+
+						{% else %}
+								<li>
+									<a class="emphasize" href="{% url 'pet:login' %}">Pet Owner Profile</a> - 
+									<a href="{% url 'pet:login' %}">Your pet Owner Profile page.</a>
+								</li>
+								<li>
+									<a class="emphasize" href="{% url 'pet:login' %}">Pet Owner Update Account</a> - 
+									<a href="{% url 'pet:login' %}">Create a Pet Owner account here.</a>
+								</li>
+								<li>
+									<a class="emphasize" href="{% url 'pet:login' %}">Pet Owner Delete Account</a> - 
+									<a href="{% url 'pet:login' %}">Create a Pet Owner account here.</a>
+								</li>
+						{% endif %}
+
+					</ul>
+
+				<br>
+
+				<h4>Kennel Manager Pages</h4>
+				<ul class="unstyled listoption5">
+						<li>
+							<a class="emphasize" href="{% url 'pet:manager_create_account' %}">Create Account</a> - 
+							<a href="{% url 'pet:manager_create_account' %}">Create a Pet Owner account here.</a>
+						</li>
+
+						{% if user.is_authenticated %}
+		          {% if perms.pet.is_a_kennel %} 
+								<li>
+									<a class="emphasize" href="{% url 'pet:redirect_to_account' user.pk %}">Kennel Manager Profile</a> - 
+									<a href="{% url 'pet:redirect_to_account' user.pk %}">Your Kennel ManagerProfile page.</a>
+								</li>
+								<li>
+									<a class="emphasize" href="{% url 'pet:redirect_to_account' user.pk %}">Kennel Manager Update Account</a> - 
+									<a href="{% url 'pet:redirect_to_account' user.pk %}">Create a Kennel Manager account here.</a>
+								</li>
+								<li>
+									<a class="emphasize" href="{% url 'pet:user_delete_account' user.pk %}">Kennel Manager Delete Account</a> - 
+									<a href="{% url 'pet:user_delete_account' user.pk %}">Create a Kennel Manager account here.</a>
+						</li>
+							{% endif %}
+
+						{% else %}
+								<li>
+									<a class="emphasize" href="{% url 'pet:login' %}">Kennel Manager Profile</a> - 
+									<a href="{% url 'pet:login' %}">Your Kennel Manager Profile page.</a>
+								</li>
+								<li>
+									<a class="emphasize" href="{% url 'pet:login' %}">Kennel Manager Update Account</a> - 
+									<a href="{% url 'pet:login' %}">Create a Kennel Manager account here.</a>
+								</li>
+								<li>
+									<a class="emphasize" href="{% url 'pet:login' %}">Kennel Manager Delete Account</a> - 
+									<a href="{% url 'pet:login' %}">Create a Kennel Manager account here.</a>
+								</li>
+						{% endif %}
+
+					</ul>
+
+				<br>
+
+				<h4>Pet Pages</h4>
+				<ul class="unstyled listoption5">
+						<li>
+							<a class="emphasize" href="{% url 'pet:pet_create_form' %}">Add a Pet</a> - 
+							<a href="{% url 'pet:pet_create_form' %}">If you have created a Pet Owner Account, you can add a pet here.</a>
+						</li>
+				</ul>
+
+				<br>
+
+				<h4>Other Account Pages</h4>
+				<ul class="unstyled listoption5">
+						<li>
+							<a class="emphasize" href="{% url 'pet:forgot_password' %}">Forgot Password</a> - 
+							<a href="{% url 'pet:forgot_password' %}">Use this page to reset your password and send a new password to your email on file to access your account.</a>
+						</li>
+						<li>
+							<a class="emphasize" href="{% url 'pet:reset_password' %}">Reset Password</a> - 
+							<a href="{% url 'pet:reset_password' %}">Reset your password using your temporary password or your old password.</a>
+						</li>
+				</ul>
+
+				<br>
+
+				<h4>Other Pages</h4>
+				<ul class="unstyled listoption5">
+						<li>
+							<a class="emphasize" href="{% url 'pet:privacy_policy' %}">Privacy Policy</a> - 
+							<a href="{% url 'pet:privacy_policy' %}">Privacy policy of the site.</a>
+						</li>
+						<li>
+							<a class="emphasize" href="{% url 'pet:terms_and_conditions' %}">Terms and Conditions</a> - 
+							<a href="{% url 'pet:terms_and_conditions' %}">Terms and Conditions for using the site and creating an Account.</a>
+						</li>
+				</ul>
+
+				<br>
+
+      <div class="span9">
+        <div class="form-actions">
+          <div class="pull-right">
+	        	<input type="button" value="Back" onclick="goBack()" class="btn btn-success">
+	        </div>
+	      </div>
+	    </div>
+
+			</div>
+    </div>
+  </section>
+</div>
+
+{% endblock%}
+
+
+{% block js %}
+
+	{{ block.super }}
+
+	<script>
+		function goBack()
+		  {
+		  window.history.back()
+		  }
+	</script>
+
+{% endblock js %}
+
+
+
+
+
+

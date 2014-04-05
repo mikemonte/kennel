@@ -1,0 +1,38 @@
+{% extends "pet/base_account.html" %}
+
+
+{% block breadcrumbs %}
+	<!--  breadcrumb --> 
+	<ul class="breadcrumb">
+	  <li>
+	    <a href="{% url 'pet:index' %}">Home</a>
+	    <span class="divider">/</span>
+	  </li>
+	  <li class="active"><a href="{% url 'pet:login' %}">Kennel Manager Search</a></li>
+	</ul>
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+
+ <!-- Account Login-->
+  <div class="span9">
+    <h1 class="heading1"><span class="maintext"> <i class="icon-lock"></i> Kennel Manager Search</span></h1>
+	    <section>
+			{% if object_list %}
+
+				<h4>The top 5 Kennels matching your search are displayed below. </h4>
+				<h5>Please search specifically by the name of the kennel if you haven't found it yet.</h5>
+				<br>
+
+				{% for each in object_list %}
+				<h4><a href="{% url 'pet:owner_view_of_manager' each.pk  each.salt %}"><i class="icon-certificate"></i> {{ each.kennel_name }}</a></h4>
+				{% endfor %}
+
+			{% else %}
+				<h2>No Kennel Managers found.</h2>	
+			{% endif %}
+			</section>
+	</div>
+{% endblock %}
+ 

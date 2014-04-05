@@ -1,0 +1,58 @@
+{% extends "pet/base.html" %}
+{% load url from future %}
+
+
+{% block content %}
+
+
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+      <!--  breadcrumb -->
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url 'pet:index' %}">Home</a>
+          <span class="divider">/</span>
+        </li>
+        <li class="active"><a href="#">Pet Profile</a></li> 
+      </ul>
+
+      <!-- Compare -->
+      <div class="row">
+        <!-- Compare Products-->
+        <h1 class="heading1"><span class="maintext"> <i class="icon-refresh"></i> Pet Profile</span></h1>
+        <div class="span2 pull-left profile_strong">
+	        	<ul>
+	        		<li>Name:</li>
+	        		<li>Age:</li>
+	        		<li>Feeding:</li>
+	        		<li>Walking:</li>
+	        		<li>Care Instructions:</li>
+	        		<li>Emergency Contact:</li>
+	        		<li>Picture:</li>
+	        	</ul>	
+        </div>	        
+        <div class="span9 pull-left">
+        	<ul>
+        		<li>{{ pet.name }}</li>
+        		<li>{{ pet.age }}</li>
+        		<li>{{ pet.food }}</li>
+        		<li>{{ pet.walk }}</li>
+        		<li>{{ pet.care }}</li>
+        		<li>{{ pet.emergency }}</li>
+        		{% if pet.picture %}
+        		<li><img src="{{ STATIC_URL }}{{ pet.picture }}" alt="{{ pet.name }}" height="100" width="100"></li>
+        		{% endif %}
+        	</ul>
+        </div>
+      </div>
+
+			<br>
+			
+    </div>
+  </section>
+</div>
+
+{% endblock%}
+
+

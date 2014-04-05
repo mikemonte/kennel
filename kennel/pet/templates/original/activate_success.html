@@ -1,0 +1,9 @@
+{% extends "pet/base.html" %}
+
+{% block content %}
+
+<h3>You've successfully activated you account</h3>
+<p>Please follow this link to log in now!</p>
+<p><a href="{% url 'pet:login' %}">Login</a></p>
+
+{% endblock %}

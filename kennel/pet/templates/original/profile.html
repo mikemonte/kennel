@@ -1,0 +1,44 @@
+{% extends "pet/base.html" %}
+
+{% block content %}
+
+<h3>My Info</h3>
+<p>Username: {{ user.username }}</p>
+<p>Contact ph#: {{ owner.contact }}</p>
+<div>
+	<img src="{{ STATIC_URL }}{{ owner.picture }}" alt="{{ owner.name }}" height="100" width="100">
+</div>
+
+{% if pets %}
+	{% for pet in pets %}
+	<p><a href="{{ pet.get_absolute_url }}">{{ pet.name }}</a> .. Click here to <a href="{% url 'pet:pet_update_form' pet.pk pet.slug %}">Update</a> this pet.  
+	Remove Pet? Click <a href="{% url 'pet:pet_delete_form' pet.pk pet.slug %}">here</a>
+	</p>
+	{% endfor %}
+{% else %}
+	<p>No pets currently added</p>
+{% endif %}
+<p><a href="{% url 'pet:pet_create_form' %}">Add a Pet</a></p>
+
+<p>Manage my Kennel Managers</p>
+
+{% if managers %}
+	<ul>
+		{% for manager in managers %}
+		<li><a href="{% url 'pet:owner_view_of_manager' manager.pk manager.salt %}">{{ manager.kennel_name }}</a></li>
+		{% endfor%}
+	</ul>
+{% endif %}
+
+<p>Want to add another Kennel Manager to be able to view your pets? Use the search box below.</p>
+<div class="grid_4">
+	<form enctype="multipart/form-data" action="{% url 'pet:manager_list' %}" method="get">
+	<input type="text" name="q" value="" placeholder="Start Searching..." accept-charset="UTF-8">
+	<input type="submit" value="Search" />
+	</form>    
+</div>
+
+<p>Click <a href="{% url 'pet:owner_update_form' user.pk %}">Here </a>to update your account.</p>
+
+<p>Do you want to close your account? Click <a href="{% url 'pet:user_delete_account' user.pk %}">here</a>.</p>
+{% endblock %}

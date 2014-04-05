@@ -1,0 +1,15 @@
+{% extends "pet/base.html" %}
+
+{% block content %}
+
+<h3>Manager List</h3>
+
+{% if object_list %}
+	<ul>
+	{% for each in object_list %}
+	<p><a href="{% url 'pet:owner_view_of_manager' each.pk  each.salt %}">{{ each.kennel_name }}</a></p>
+	{% endfor %}
+	</ul>
+{% endif %}
+
+{% endblock %}

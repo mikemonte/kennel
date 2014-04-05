@@ -1,0 +1,62 @@
+{% extends "pet/base_account.html" %}
+
+
+{% block content %}
+
+<h1 class="heading1"><span class="maintext"> <i class="icon-signin"></i>{{ form_title }}</span></h1>
+<div class="span8">
+  <h3 class="heading3">{{ form_sub_title }}</h3>
+  {% if form_sub_title %}<br>{% endif %}
+
+  <form class="form-horizontal" enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+    <fieldset>
+
+      {% for field in form %}
+
+      <div class="checkoutsteptitle">
+      </div>
+          <div class="checkoutstep">
+          <label for="{{ field.id_for_label }}" id="{{ field.id_for_label }}" class="">
+            {% if field.field.required %}
+              <span class="red">*</span>
+            {% endif %}
+            {{ field.label }}:</label>
+            {{ field }} 
+          </div>
+
+      {% endfor %}
+
+      <div class="form-actions pull-right" style="margin-right:2em;">
+        <input class="btn btn-orange" type="submit" value="Submit" >
+      </div>
+    </fieldset>
+  </form> 
+</div>
+
+{% endblock content %}
+
+
+{% block sidebar %}
+
+    <!-- Sidebar Start-->
+    <div class="span4">
+      <aside>
+        <div class="sidewidt">
+          <h2 class="heading2"><span> <i class="icon-envelope"></i> Contact Info</span></h2>
+          <p> SamaPet<br>
+            4975 Swenson St.<br> 
+           P.O. Box 19733<br>
+           Las Vegas, NV 89119<br>
+            <br>
+<!--            <i class="icon-phone"></i> Fax: (123) 444-7890<br>
+ -->           <i class="icon-envelope"></i> Email: samapet.contact@gmail.com<br>
+<!--            <i class="icon-globe"></i> Web: yourcompanyname.com<br>
+ -->          </p>
+        </div>
+      </aside>
+    </div>
+    <!-- Sidebar End-->
+
+{% endblock sidebar %}
+
+

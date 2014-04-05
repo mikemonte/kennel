@@ -1,0 +1,40 @@
+{% extends "pet/base_account.html" %}
+
+
+{% block content %}
+
+<h1 class="heading1"><span class="maintext"> <i class="icon-signin"></i>{{ form_title }}</span></h1>
+<div class="span8">
+  <h3 class="heading3">{{ form_sub_title }}</h3>
+  {% if form_sub_title %}<br>{% endif %}
+
+  <form class="form-horizontal" enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+    <fieldset>
+
+      {% for field in form %}
+
+      <p style="color:red;">{{ field.errors }}</p>
+
+      <div class="checkoutsteptitle">
+      </div>
+        <div class="checkoutstep">
+        <label for="{{ field.id_for_label }}" id="{{ field.id_for_label }}" class="">
+          {% if field.field.required %}
+            <span class="red">*</span>
+          {% endif %}
+          {{ field.label }}:</label>
+          {{ field }} {{ field.help_text }}
+        </div>
+
+      {% endfor %}
+
+      <div class="form-actions pull-right" style="margin-right:2em;">
+        <input class="btn btn-orange" type="submit" value="Submit" >
+      </div>
+    </fieldset>
+  </form> 
+</div>
+
+{% endblock content %}
+
+ 

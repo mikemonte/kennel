@@ -1,0 +1,37 @@
+{% extends "pet/base.html" %}
+
+{% block content %}
+ 
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+      <!--  breadcrumb -->
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url 'pet:index' %}">Home</a>
+          <span class="divider">/</span>
+        </li>
+        <li class="active"><a href="#">Registration</a></li> 
+      </ul>
+
+      <!-- Compare -->
+      <div class="row span11">
+        <!-- Compare Products-->
+				<h4>You've registered. Please check your email to activate your account.</h4>
+				<div>
+					<ul class="unstyled listoption5">
+						<li>Your signup confirmation email will arrive in the next few minutes.</li>
+						<li>If it hasn't arrived, check your spam folder.</li>
+						<li>Click the link in the email to activate your account.</li>
+						<li>Add your pet's to your profile, and the share with the kennel that you belong to in order to share all important information with the people who watch your pets because your pets are important.</li>
+					</ul>
+				</div>
+			</div>
+
+		<br>
+    
+    </div> 
+  </section>
+</div>
+
+{% endblock %} 

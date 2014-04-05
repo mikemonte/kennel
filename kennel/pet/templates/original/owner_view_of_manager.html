@@ -1,0 +1,22 @@
+{% extends "pet/base.html" %}
+
+{% block content %}
+
+<p>Kennel Name: {{ manager.kennel_name }}</p>
+<p>Name: {{ manager.name }}</p>
+<p>Contact: {{ manager.contact }}</p>
+<p>Info: {{ manager.info }}</p>
+
+
+<div>
+	<img src="{{ STATIC_URL }}{{ manager.picture }}" alt="{{ manager.name }}" height="100" width="100">
+</div>
+
+
+{% if connected_owner %}
+<p><a href="{% url 'pet:remove_kennel_connection' manager.pk manager.salt %}">Remove</a></p>
+{% else %}
+<p><a href="{% url 'pet:add_kennel_connection' manager.pk manager.salt %}">Add</a></p>
+{% endif %}
+
+{% endblock %}

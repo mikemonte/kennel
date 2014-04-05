@@ -1,0 +1,78 @@
+{% extends "pet/base.html" %}
+{% load url from future %}
+
+
+{% block content %}
+
+
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+
+    	<h1 class="heading1"><span class="maintext"> <i class="icon-refresh"></i> Where to Start</span></h1>
+    	<div class="span10">
+
+				<h4>Our Mission</h4>
+				<p>To help make your pets' information more readily available to the people that watch your pets, so that they have it when they need it.</p>
+
+				<br>
+
+				<h4>How does it work</h4>
+				<p>Our site has two types of accounts. A <a class="emphasize" href="{% url 'pet:create_account' %}">Pet Owner</a> account and a <a class="emphasize" href="{% url 'pet:manager_create_account' %}">Kennel Manager</a> account. </p>
+
+				<br>
+
+				<h4><a href="{% url 'pet:create_account' %}">Pet Owner Account</a></h4> 
+				<p>Create a Pet Owner account to add your pets and their information for feeding instructions, care, emergency contact, and more.  Then search for Kennel Managers from within your account page or using the search bar at the top of the site.  You will be searching for them by Kennel Name, so this works best if the people who watch your pets sign up for an account, and then let you know the Kennel Name that they registered on our site, so you can easily add them.  You can add and remove Kennel Managers to you profile based on who watches your pets. </p>
+
+				<br>
+
+				<h4><a href="{% url 'pet:manager_create_account' %}">Kennel Manager Account</a></h4>
+				<p>Create an account so Pet Owners can search for you by your Kennel Name and give you viewing permission of thier pets.  Add your information as well that your Pet Owners can view. You can add a profile description, contact information, or other pertinent information.  Once a Pet Owner adds you to their list of Kennel Managers, you have viewing permission of their pets' information, and can refer to this any time to help take better care of their pets, or even prepare before their pets arrive.</p>
+				
+				<br>
+
+				<h4>Other Site Features</h4>
+				<p>The site has a monthly Newsletter, which you can subscribe to on the <a class="emphasize" href="{% url 'pet:index' %}">Home</a> page without signing up for an account, or you can sign up under your <a class="emphasize" href="{% url 'pet:login' %}">account</a> preferences.  We will email about one time monthly to alert you on any new feature of the site or relevenat news.</p>
+				<p>There are some news stories about pets which we will add from time to time that go along with our love for animals and how we like to hear about the amazing things that they do. These can also be found on our <a href="{% url 'pet:index' %}">Home</a> page.</p>
+
+				<br>
+
+				<p>Thank you, and we hope that you enjoy our site.</p>
+
+				<br>
+
+      <div class="span9">
+        <div class="form-actions">
+          <div class="pull-right">
+	        	<input type="button" value="Back" onclick="goBack()" class="btn btn-success">
+	        </div>
+	      </div>
+	    </div>
+
+			</div>
+    </div>
+  </section>
+</div>
+
+{% endblock%}
+
+
+{% block js %}
+
+	{{ block.super }}
+
+	<script>
+		function goBack()
+		  {
+		  window.history.back()
+		  }
+	</script>
+
+{% endblock js %}
+
+
+
+
+
+

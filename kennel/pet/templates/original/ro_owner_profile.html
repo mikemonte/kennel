@@ -1,0 +1,78 @@
+{% extends "pet/base.html" %}
+{% load url from future %}
+
+
+{% block content %}
+
+
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+      <!--  breadcrumb -->
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url 'pet:index' %}">Home</a>
+          <span class="divider">/</span>
+        </li>
+        <li class="active"><a href="#">Read-Only Owner Profile</a></li> 
+      </ul>
+
+      <!-- Compare -->
+      <div class="row">
+        <!-- Compare Products-->
+        <h1 class="heading1"><span class="maintext"> <i class="icon-refresh"></i> Owner Profile</span></h1>
+        <div class="span2 pull-left profile_strong">
+	        	<ul>
+	        		<li>Name:</li>
+	        		<li>Contact:</li>
+	        		<li>Additional Info:</li>
+	        		<li>Owner Picture:</li>
+	        	</ul>	
+        </div>	        
+        <div class="span5 pull-left">
+        	<ul>
+        		<li>{{ owner.name }}</li>
+        		<li>{{ owner.contact }}</li>
+        		<li>{{ owner.info }}</li>
+        		{% if owner.picture %}
+        		<li><img src="{{ STATIC_URL }}{{ owner.picture }}" alt="{{ owner.name }}" height="100" width="100"></li>
+        		{% endif %}
+        	</ul>
+        </div>
+      </div>
+
+			<br>
+			<br>
+
+
+      <!-- Compare -->
+      <div class="row">
+        <!-- Compare Products-->
+        <h1 class="heading1"><span class="maintext"> <i class="icon-refresh"></i> Owner's Pets</span></h1>
+        <div class="span2 pull-left">
+
+							{% if pets %}
+			        <div class="span12 pull-left">
+								<ol class="unstyled">
+									{% for pet in pets %}
+										<li>
+										<h4><i class="icon-play"></i><a href="{% url 'pet:ro_pet_profile' pet.pk pet.salt %}"> {{ pet.name }}</a></h4>
+										</li>
+									{% endfor %}
+								</ol>
+								{% else %}
+								<p>No pets listed</p>
+							</div>
+							{% endif %}
+						</div>
+					</div>
+
+			<br>
+			
+    </div>
+  </section>
+</div>
+
+{% endblock%}
+
+

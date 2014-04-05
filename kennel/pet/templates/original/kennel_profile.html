@@ -1,0 +1,39 @@
+{% extends "pet/base.html" %}
+
+
+{% block content %}
+
+<h3>My Info</h3>
+<p>Kennel Name: {{ kennel.kennel_name }}</p>
+<p>Username: {{ user.username }}</p>
+<p>Contact ph#: {{ kennel.contact }}</p>
+<p>Additional info: {{ kennel.info }}</p>
+<div>
+	<img src="{{ STATIC_URL }}{{ kennel.picture }}" alt="{{ kennel.name }}" height="100" width="100">
+</div>
+
+{% if kennel.owners.all %}
+	<p>Current Client list</p>
+	<ul> 
+	{% for each in kennel.owners.all %}
+		<li><a href="{% url 'pet:ro_owner_profile' each.pk each.salt %}">{{ each.name }}</a>
+			{% if each.pets.all %}
+				<ol>
+					{% for pet in each.pets.all %}
+						<li>
+						<a href="{% url 'pet:ro_pet_profile' pet.pk pet.salt %}">{{ pet.name }}</a>
+						</li>
+					{% endfor %}
+				</ol>
+			{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No current clients at this time</p> 
+{% endif %}
+
+<p>Click <a href="{% url 'pet:manager_update_form' user.pk %}">Here </a>to update your account.</p>
+
+<p>Do you want to close your account? Click <a href="{% url 'pet:user_delete_account' user.pk %}">here</a>.</p>
+{% endblock%}

@@ -1,0 +1,48 @@
+{% load url from future %}
+
+{% if messages %}
+<ul>
+	{% for message in messages %}
+	<li id="message_{{ forloop.counter }}"
+		{% if message.tags %} class="{{ message.tags }}"
+			{% endif %}>
+			{{ message }}
+	</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+
+<div>
+	<h2>Pet Stayz</h2>
+	<p><a href="{% url 'pet:index' %}"</a>Home</p>
+</div>
+
+<div>
+	{% if user.is_authenticated %}
+		{% if perms.pet.is_a_owner %}
+		<a href="{% url 'pet:owner_profile' user.pk %}">Welcome, {{ user.username }}</a>
+		{% endif %}
+		{% if perms.pet.is_a_kennel %}
+		<a href="{% url 'pet:manager_profile' user.pk %}">Welcome, {{ user.username }}</a>
+		{% endif %}
+	{% else %}
+	<a href="{% url 'pet:login' %}">Login</a>
+	{% endif %}
+	{% if user.is_authenticated %}
+	<a href="{% url 'pet:logout' %}">Logout</a>
+	{% endif %}
+</div>
+
+<div>
+	<p><a href="{% url 'pet:contact' %}">Contact</a></p>
+</div>
+
+<div class="grid_4">
+	<form action="{% url 'pet:manager_list' %}" method="get">
+	<input type="text" name="q" value="" placeholder="Start Searching..." accept-charset="UTF-8">
+	<input type="submit" value="Search" />
+	</form>    
+</div>
+
+{% block content %} {% endblock %}
