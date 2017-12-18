@@ -1,5 +1,5 @@
 Pages that I need to add:
-	1. pet pictures
+	1. pet pictures (test)
 	2. blog
 	3. about
 	4. features
